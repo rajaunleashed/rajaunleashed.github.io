@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Engr. Rameez Raja | Senior Full Stack Engineer & Tech Lead</title>
+  
+  <!-- Google Fonts & Tailwind CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"Fira Code"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef8ff',
+              100: '#d9f0ff',
+              200: '#bce4ff',
+              300: '#8ed2ff',
+              400: '#58b6ff',
+              500: '#3295fd',
+              600: '#1d76f2',
+              700: '#155edc',
+              800: '#174cb3',
+              900: '#18428d',
+              950: '#122955',
+            },
+            accent: {
+              teal: '#14b8a6',
+              cyan: '#06b6d4',
+              emerald: '#10b981',
+              violet: '#8b5cf6',
+              amber: '#f59e0b'
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom subtle glassmorphism and scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b1120;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card-light {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 50%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-border {
+      position: relative;
+      border-radius: 1rem;
+      background: linear-gradient(60deg, #3b82f6, #06b6d4, #10b981);
+      padding: 1px;
+    }
+
+    /* Print optimization for exporting clean PDF CV */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+      .no-print, #interactive-terminal, #canvas-bg, .theme-toggle, nav, #toast, .action-buttons {
+        display: none !important;
+      }
+      .print-visible {
+        display: block !important;
+      }
+      .glass-card {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        color: #0f172a !important;
+      }
+      .text-slate-400, .text-slate-300 {
+        color: #475569 !important;
+      }
+      .text-white {
+        color: #0f172a !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white transition-colors duration-300">
+
+  <!-- Interactive Canvas Background for Connected Microservices Nodes -->
+  <canvas id="canvas-bg" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- Notification Toast Modal -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-3 bg-slate-900/95 text-white border border-brand-500/40 px-5 py-3.5 rounded-xl shadow-2xl backdrop-blur-md">
+    <span id="toast-icon" class="text-brand-400 font-bold">✓</span>
+    <span id="toast-msg" class="text-sm font-medium">Notification message</span>
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 via-brand-500 to-accent-cyan flex items-center justify-center font-bold text-white shadow-lg shadow-brand-500/25 group-hover:scale-105 transition-transform">
+          RR
+        </div>
+        <div>
+          <span class="font-bold tracking-tight text-white group-hover:text-brand-400 transition-colors">Engr. Rameez Raja</span>
+          <span class="hidden sm:inline-block text-xs text-slate-400 ml-2 font-mono">Sr. Full Stack Lead</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav links -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-brand-400 transition-colors">About</a>
+        <a href="#experience" class="hover:text-brand-400 transition-colors">Experience</a>
+        <a href="#projects" class="hover:text-brand-400 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-brand-400 transition-colors">Tech Matrix</a>
+        <a href="#terminal-section" class="hover:text-brand-400 transition-colors font-mono text-xs px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-md text-accent-cyan">rameez-sh</a>
+        <a href="#education" class="hover:text-brand-400 transition-colors">Education</a>
+      </nav>
+
+      <!-- Action items -->
+      <div class="flex items-center gap-3">
+        <button onclick="window.print()" title="Print or Save PDF Resume" class="p-2 text-slate-300 hover:text-white hover:bg-slate-900 rounded-lg border border-slate-800 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+          </svg>
+        </button>
+
+        <a href="#contact" class="px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 rounded-xl shadow-md shadow-brand-600/30 transition-all hover:scale-[1.02] active:scale-[0.98]">
+          Hire Me
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-24 pb-20">
+    <!-- Hero Section -->
+    <section id="hero" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <!-- Availability Badge -->
+          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-medium backdrop-blur-sm">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>Available for Senior Full Stack & Engineering Leadership Roles</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+            Hi, I'm <br class="hidden sm:inline"/>
+            <span class="gradient-text">Engr. Rameez Raja</span>
+          </h1>
+
+          <!-- Typewriter Subheading -->
+          <div class="text-xl sm:text-2xl font-mono text-slate-300 h-8 flex items-center">
+            <span class="text-brand-400 mr-2 font-bold">&gt;</span>
+            <span id="typewriter-text" class="border-r-2 border-brand-400 pr-1 animate-pulse">Senior Full Stack Engineer</span>
+          </div>
+
+          <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+            Passionate software architect with <span class="text-white font-semibold">10+ years</span> of expertise in scalable microservices, HIPAA-compliant telehealth applications, real-time WebSockets, and enterprise systems across <span class="text-brand-400 font-mono">Laravel, Node.js, Angular, React & AWS</span>.
+          </p>
+
+          <!-- Contact Chips -->
+          <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-slate-300 font-mono">
+            <div class="flex items-center gap-2 bg-slate-900/90 border border-slate-800 px-3 py-1.5 rounded-lg">
+              <svg class="w-4 h-4 text-brand-400" fill="currentColor" viewBox="0 0 20 20"><path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"/></svg>
+              <span>District Swat, KPK, Pakistan</span>
+            </div>
+            <button onclick="copyToClipboard('rajaunleashed@gmail.com', 'Email copied to clipboard!')" class="flex items-center gap-2 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-brand-500/50 px-3 py-1.5 rounded-lg transition group">
+              <svg class="w-4 h-4 text-brand-400 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+              <span>rajaunleashed@gmail.com</span>
+              <span class="text-xs text-brand-400 bg-brand-500/10 px-1.5 py-0.5 rounded">Copy</span>
+            </button>
+            <a href="tel:03349342471" class="flex items-center gap-2 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 px-3 py-1.5 rounded-lg transition">
+              <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/></svg>
+              <span>0334-9342471</span>
+            </a>
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="flex flex-wrap items-center gap-4 pt-4">
+            <a href="#projects" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-accent-cyan text-white font-semibold shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all">
+              View Key Projects
+            </a>
+            <a href="#experience" class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-medium hover:border-slate-500 transition-all">
+              Explore Experience
+            </a>
+            <button onclick="downloadResumeText()" class="px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 font-medium flex items-center gap-2 transition hover:text-white">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>Download Bio/Text</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="relative">
+            <!-- Decorative ambient glow -->
+            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-500 via-accent-teal to-accent-violet opacity-30 blur-xl"></div>
+            
+            <div class="relative glass-card rounded-2xl p-6 sm:p-7 border border-slate-700/60 shadow-2xl">
+              <!-- Window title bar -->
+              <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-5">
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                  <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+                  <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+                  <span class="text-xs font-mono text-slate-400 ml-2">architecture-overview.json</span>
+                </div>
+                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">Active Stack</span>
+              </div>
+
+              <!-- Metrics Grid -->
+              <div class="grid grid-cols-2 gap-3 mb-6">
+                <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800/80 hover:border-brand-500/40 transition">
+                  <div class="text-xs text-slate-400">Total Experience</div>
+                  <div class="text-2xl font-bold text-white mt-1">10+ <span class="text-brand-400 text-sm font-normal">Years</span></div>
+                  <div class="text-[11px] text-emerald-400 mt-0.5">2013 → Present</div>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800/80 hover:border-brand-500/40 transition">
+                  <div class="text-xs text-slate-400">Academic CGPA</div>
+                  <div class="text-2xl font-bold text-white mt-1">3.59 <span class="text-slate-400 text-sm font-normal">/ 4.0</span></div>
+                  <div class="text-[11px] text-brand-400 mt-0.5">DUET Karachi B.E</div>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800/80 hover:border-brand-500/40 transition">
+                  <div class="text-xs text-slate-400">HIPAA Compliant</div>
+                  <div class="text-2xl font-bold text-emerald-400 mt-1">100%</div>
+                  <div class="text-[11px] text-slate-400 mt-0.5">Hucu.ai Telehealth</div>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800/80 hover:border-brand-500/40 transition">
+                  <div class="text-xs text-slate-400">Core Disciplines</div>
+                  <div class="text-2xl font-bold text-accent-cyan mt-1">Full-Stack</div>
+                  <div class="text-[11px] text-slate-400 mt-0.5">Web • Cloud • Mobile</div>
+                </div>
+              </div>
+
+              <!-- Interactive Node Selector -->
+              <div class="space-y-2">
+                <div class="text-xs font-mono text-slate-400 uppercase tracking-wider flex justify-between">
+                  <span>Architecture Pipelines</span>
+                  <span class="text-brand-400">Click to Inspect</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+                  <button onclick="inspectStack('backend')" class="p-2.5 rounded-lg bg-slate-800/80 hover:bg-brand-600/30 border border-slate-700/80 hover:border-brand-500 text-slate-200 transition">
+                    ⚡ Backend Microservices
+                  </button>
+                  <button onclick="inspectStack('frontend')" class="p-2.5 rounded-lg bg-slate-800/80 hover:bg-brand-600/30 border border-slate-700/80 hover:border-brand-500 text-slate-200 transition">
+                    ⚛️ Modern Frontend
+                  </button>
+                  <button onclick="inspectStack('devops')" class="p-2.5 rounded-lg bg-slate-800/80 hover:bg-brand-600/30 border border-slate-700/80 hover:border-brand-500 text-slate-200 transition">
+                    ☁️ AWS & CI/CD
+                  </button>
+                </div>
+                <div id="stack-detail" class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 leading-relaxed min-h-[64px]">
+                  [Ready]: Select a pipeline above to inspect technical specifications, frameworks, and architecture components.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="glass-card rounded-2xl p-8 border border-slate-800 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-2.5 h-2.5 rounded-full bg-brand-400 animate-ping"></div>
+            <h2 class="text-xs font-mono uppercase tracking-widest text-brand-400">Executive Summary & Objective</h2>
+          </div>
+          <p class="text-lg sm:text-xl text-slate-200 font-normal leading-relaxed">
+            "Seeking a high-impact engineering leadership role where comprehensive mastery of the <span class="text-white font-semibold">software development life cycle (SDLC)</span>, deep technical aptitude across modern web and cloud architectures, and an unyielding commitment to excellence can effectively scale business operations and drive innovative, highly secure software products."
+          </p>
+          <div class="mt-6 pt-6 border-t border-slate-800/80 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div class="p-3 bg-slate-900/60 rounded-xl">
+              <div class="text-slate-400 text-xs">Primary Focus</div>
+              <div class="text-white font-semibold mt-0.5">Full Stack & Team Lead</div>
+            </div>
+            <div class="p-3 bg-slate-900/60 rounded-xl">
+              <div class="text-slate-400 text-xs">Architectures</div>
+              <div class="text-white font-semibold mt-0.5">Microservices & Event-Driven</div>
+            </div>
+            <div class="p-3 bg-slate-900/60 rounded-xl">
+              <div class="text-slate-400 text-xs">Security Standards</div>
+              <div class="text-white font-semibold mt-0.5">HIPAA, OAuth & JWT</div>
+            </div>
+            <div class="p-3 bg-slate-900/60 rounded-xl">
+              <div class="text-slate-400 text-xs">Special Distinction</div>
+              <div class="text-white font-semibold mt-0.5">Hafiz-ul-Quran & Merit Winner</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-widest text-brand-400 mb-2">Track Record</div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Work Experience</h2>
+          <p class="text-slate-400 text-sm mt-1">Progressive career path spanning Senior Lead, Full Stack, and Systems Architecture</p>
+        </div>
+        <!-- Experience filter pills -->
+        <div class="flex flex-wrap gap-2 text-xs font-mono">
+          <button onclick="filterExperience('all')" class="exp-filter active px-3 py-1.5 rounded-lg bg-brand-600 text-white font-medium transition">All Roles (8)</button>
+          <button onclick="filterExperience('lead')" class="exp-filter px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition">Lead & Senior</button>
+          <button onclick="filterExperience('fullstack')" class="exp-filter px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition">Full Stack</button>
+          <button onclick="filterExperience('early')" class="exp-filter px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition">Early Foundation</button>
+        </div>
+      </div>
+
+      <!-- Experience Timeline list -->
+      <div class="space-y-6" id="experience-list">
+
+        <!-- Role 1: Hucu.ai -->
+        <div class="exp-item lead fullstack glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 hover:border-brand-500/50 transition duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4 mb-4">
+            <div>
+              <div class="flex items-center gap-3">
+                <h3 class="text-xl sm:text-2xl font-bold text-white">Sr. Full Stack Engineer</h3>
+                <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Current</span>
+              </div>
+              <div class="text-brand-400 font-medium text-base mt-0.5">Hucu.ai</div>
+            </div>
+            <div class="text-xs font-mono text-slate-400 bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800 w-fit">
+              06/2021 — Present
+            </div>
+          </div>
+          <div class="space-y-3 text-slate-300 text-sm leading-relaxed">
+            <p>• Lead new architectural initiatives, high-level planning, distributed design architecture, and cross-functional project management for HIPAA-compliant healthcare collaboration tools.</p>
+            <p>• Supervise and mentor web engineering squads, organize sprint backlogs, ensure reliable production deliveries, and drive technical quality metrics.</p>
+            <p>• Full-stack development covering Laravel, Node.js, Angular 10, React Native, Socket.io, React.js, GraphQL, MySQL, RabbitMQ, Redis caching, microservices, and automated unit testing using Jest & Mocha Chai.</p>
+          </div>
+          <!-- Tech Chips -->
+          <div class="mt-5 flex flex-wrap gap-1.5 text-xs font-mono text-slate-300">
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-brand-300">Laravel</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-brand-300">Node.js</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-brand-300">Angular 10</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-accent-cyan">React Native</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-accent-teal">Socket.io</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-accent-teal">RabbitMQ</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-accent-teal">Redis</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-violet-300">GraphQL</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800">Microservices</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800">Jest / Mocha</span>
+          </div>
+        </div>
+
+        <!-- Role 2: Topdot Pvt. Ltd. -->
+        <div class="exp-item lead fullstack glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 hover:border-brand-500/50 transition duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4 mb-4">
+            <div>
+              <div class="flex items-center gap-3">
+                <h3 class="text-xl sm:text-2xl font-bold text-white">Sr. Software Engineer (Team Lead)</h3>
+                <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30">Team Lead</span>
+              </div>
+              <div class="text-brand-400 font-medium text-base mt-0.5">Topdot Pvt. Ltd.</div>
+            </div>
+            <div class="text-xs font-mono text-slate-400 bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800 w-fit">
+              08/2019 — 02/2021
+            </div>
+          </div>
+          <div class="space-y-3 text-slate-300 text-sm leading-relaxed">
+            <p>• Spearheaded architectural design, innovation pipelines, and technical delivery management for client web & mobile applications.</p>
+            <p>• Supervised developers, delegated sprint assignments, performed code reviews, and safeguarded milestone deadlines.</p>
+            <p>• Built resilient frontend & backend systems utilizing Angular 9, Vue.js / Nuxt.js, PHP/Laravel, Node.js, Socket.io, React.js, and Ionic/Angular.</p>
+            <p>• Integrated multi-currency payment gateways (PayPal, Stripe, Braintree), Mailchimp, OAuth/Sanctum/Passport security, Docker containers, and automated CI/CD deployments to AWS.</p>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-1.5 text-xs font-mono text-slate-300">
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-brand-300">Angular 9</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-brand-300">Vue.js / Nuxt.js</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-brand-300">PHP Laravel</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-accent-cyan">Docker & K8s</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-accent-teal">AWS CI/CD</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800">Stripe / PayPal</span>
+          </div>
+        </div>
+
+        <!-- Role 3: Al-Nafay IT Solutions -->
+        <div class="exp-item fullstack lead glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 hover:border-brand-500/50 transition duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4 mb-4">
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-white">Full Stack Engineer</h3>
+              <div class="text-brand-400 font-medium text-base mt-0.5">Al-Nafay IT Solutions</div>
+            </div>
+            <div class="text-xs font-mono text-slate-400 bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800 w-fit">
+              03/2019 — 08/2019
+            </div>
+          </div>
+          <div class="space-y-3 text-slate-300 text-sm leading-relaxed">
+            <p>• Engineered real-estate client & agency web suites in Node.js, Angular 10, TypeScript, and ReactJS.</p>
+            <p>• Created scalable RESTful API web microservices in Node.js (Adonis framework), ExpressJS, and Socket.io.</p>
+            <p>• Automated code deployments on AWS via CI/CD pipelines and managed the core web team.</p>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-1.5 text-xs font-mono text-slate-300">
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-brand-300">Node.js (Adonis / Express)</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-brand-300">Angular 10</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-accent-cyan">TypeScript</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-accent-teal">Socket.io</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800">AWS CI/CD</span>
+          </div>
+        </div>
+
+        <!-- Role 4: HTMLPro -->
+        <div class="exp-item fullstack glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 hover:border-brand-500/50 transition duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4 mb-4">
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-white">Backend Web Developer</h3>
+              <div class="text-brand-400 font-medium text-base mt-0.5">HTMLPro</div>
+            </div>
+            <div class="text-xs font-mono text-slate-400 bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800 w-fit">
+              01/2018 — 02/2019
+            </div>
+          </div>
+          <div class="space-y-3 text-slate-300 text-sm leading-relaxed">
+            <p>• Designed and developed web portals, business intelligence tools, and analytics dashboards.</p>
+            <p>• Built RESTful API web services in Laravel/Lumen; designed Angular 4 interfaces.</p>
+            <p>• Deployed production environments across DigitalOcean and AWS cloud.</p>
+            <p>• Built native iOS apps using Swift 3 and developed real-time chat engines in Node.js, Socket.io, Firebase, and JWT.</p>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-1.5 text-xs font-mono text-slate-300">
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-brand-300">Laravel / Lumen</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-brand-300">Angular 4</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-accent-cyan">Swift 3 (iOS)</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-accent-teal">Firebase & Socket.io</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800">DigitalOcean / AWS</span>
+          </div>
+        </div>
+
+        <!-- Role 5: 4Slash -->
+        <div class="exp-item fullstack early glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 hover:border-brand-500/50 transition duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4 mb-4">
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-white">Web App & iOS Developer</h3>
+              <div class="text-brand-400 font-medium text-base mt-0.5">4Slash</div>
+            </div>
+            <div class="text-xs font-mono text-slate-400 bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800 w-fit">
+              02/2015 — 12/2018
+            </div>
+          </div>
+          <div class="space-y-3 text-slate-300 text-sm leading-relaxed">
+            <p>• Developed CMS solutions, web portals, and RESTful APIs using PHP Laravel, Node.js, and third-party gateways (PayPal, Braintree, Stripe, Twilio, Mailchimp).</p>
+            <p>• Created native mobile iOS apps using Xcode and Swift.</p>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-1.5 text-xs font-mono text-slate-300">
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-brand-300">PHP Laravel</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-brand-300">Swift & Xcode</span>
+            <span class="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-accent-cyan">Twilio & Gateways</span>
+          </div>
+        </div>
+
+        <!-- Role 6: Intergraphics C&A Inc. -->
+        <div class="exp-item early glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 hover:border-brand-500/50 transition duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4 mb-4">
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-white">Web Developer</h3>
+              <div class="text-brand-400 font-medium text-base mt-0.5">Intergraphics C&A Inc.</div>
+            </div>
+            <div class="text-xs font-mono text-slate-400 bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800 w-fit">
+              03/2014 — 10/2014
+            </div>
+          </div>
+          <div class="space-y-2 text-slate-300 text-sm">
+            <p>• Designed responsive web concepts, dynamic CMS frameworks, and web application portals.</p>
+            <p>• Maintained and optimized existing client websites for performance and search visibility.</p>
+          </div>
+        </div>
+
+        <!-- Role 7: Charlotte Group of Industries -->
+        <div class="exp-item early glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 hover:border-brand-500/50 transition duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4 mb-4">
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-white">I.T Manager</h3>
+              <div class="text-brand-400 font-medium text-base mt-0.5">Charlotte Group of Industries</div>
+            </div>
+            <div class="text-xs font-mono text-slate-400 bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800 w-fit">
+              02/2013 — 03/2014
+            </div>
+          </div>
+          <div class="space-y-2 text-slate-300 text-sm">
+            <p>• Engineered company web application and store inventory management system.</p>
+            <p>• Administrated LAN/WAN, TCP/IP networking, and hardware/software troubleshooting.</p>
+            <p>• Implemented biometric attendance management system and monthly reporting.</p>
+          </div>
+        </div>
+
+        <!-- Role 8: SPS Education System & Legal Tech Admin -->
+        <div class="exp-item early glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 hover:border-brand-500/50 transition duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4 mb-4">
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-white">Computer Systems Operator & Special Elections Tech Admin</h3>
+              <div class="text-brand-400 font-medium text-base mt-0.5">SPS Education System & Sindh High Court Bar Association</div>
+            </div>
+            <div class="text-xs font-mono text-slate-400 bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800 w-fit">
+              2010 — 2011 & 2014/2015
+            </div>
+          </div>
+          <div class="space-y-2 text-slate-300 text-sm">
+            <p>• Data entry and student record generation using Oracle 6g forms.</p>
+            <p>• Selected as Administrator of the Oracle-based Voting System in the Sindh High Court Bar Association elections (2015) and MS Access-based Voting System in Sindh Bar Council Karachi (2014).</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-widest text-brand-400 mb-2">Selected Works</div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Key Projects & Live Deployments</h2>
+          <p class="text-slate-400 text-sm mt-1">Enterprise systems, macOS native utilities, and web portals delivered to global clients</p>
+        </div>
+        <!-- Project Tech Filter -->
+        <div class="flex flex-wrap gap-2 text-xs font-mono">
+          <button onclick="filterProjects('all')" class="proj-filter active px-3 py-1.5 rounded-lg bg-brand-600 text-white font-medium transition">All Projects</button>
+          <button onclick="filterProjects('health')" class="proj-filter px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition">Health & Telehealth</button>
+          <button onclick="filterProjects('mac')" class="proj-filter px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition">macOS / Native</button>
+          <button onclick="filterProjects('web')" class="proj-filter px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition">Enterprise Web</button>
+        </div>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+        
+        <!-- Project 1: Hucu Telehealth -->
+        <div class="proj-card health glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-brand-500 transition-all group">
+          <div>
+            <div class="flex items-center justify-between text-xs text-brand-400 font-mono mb-3">
+              <span>Telehealth & Messaging</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">HIPAA Compliant</span>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-brand-300 transition-colors">Patient-Doctor Real-Time Chat</h3>
+            <p class="text-slate-300 text-sm mt-2.5 leading-relaxed">
+              Real-time HIPAA-compliant web and mobile chat application enabling secure consultations between doctors, caregivers, and patients with instant notification pipelines.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800/80">
+            <div class="flex flex-wrap gap-1.5 text-xs font-mono text-slate-400 mb-4">
+              <span class="bg-slate-900 px-2 py-0.5 rounded">ReactJS</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">React Native</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Node.js</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Socket.io</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">MySQL</span>
+            </div>
+            <button onclick="openProjectModal('hucu')" class="text-xs font-semibold text-brand-400 hover:text-brand-300 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              <span>View Architecture Specs</span> &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 2: gamban macOS App -->
+        <div class="proj-card mac glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-brand-500 transition-all group">
+          <div>
+            <div class="flex items-center justify-between text-xs text-brand-400 font-mono mb-3">
+              <span>Desktop Application</span>
+              <span class="px-2 py-0.5 rounded bg-brand-500/10 text-brand-300 border border-brand-500/20">macOS Native</span>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-brand-300 transition-colors">gamban® Mac OS X Application</h3>
+            <p class="text-slate-300 text-sm mt-2.5 leading-relaxed">
+              Comprehensive native Mac OS utility built with Xcode and Swift, integrating low-level network filtering and system daemon controls for online self-exclusion.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800/80">
+            <div class="flex flex-wrap gap-1.5 text-xs font-mono text-slate-400 mb-4">
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Xcode</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Swift 2.0</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">macOS API</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Security</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <button onclick="openProjectModal('gamban')" class="text-xs font-semibold text-brand-400 hover:text-brand-300 flex items-center gap-1">
+                <span>View Details</span> &rarr;
+              </button>
+              <a href="https://www.gamban.com" target="_blank" rel="noreferrer" class="text-xs font-mono text-slate-400 hover:text-white underline">
+                gamban.com ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: YACT Club Racing -->
+        <div class="proj-card web glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-brand-500 transition-all group">
+          <div>
+            <div class="flex items-center justify-between text-xs text-brand-400 font-mono mb-3">
+              <span>Sports & Portal</span>
+              <span class="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Live Portal</span>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-brand-300 transition-colors">YACT Club Racing & Admin Portal</h3>
+            <p class="text-slate-300 text-sm mt-2.5 leading-relaxed">
+              Official regatta racing platform and administrative scoring system for the Yacht Racing Association of Long Island Sound (YRA of LIS).
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800/80">
+            <div class="flex flex-wrap gap-1.5 text-xs font-mono text-slate-400 mb-4">
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Laravel</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Angular</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">REST APIs</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">MySQL</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <button onclick="openProjectModal('yralis')" class="text-xs font-semibold text-brand-400 hover:text-brand-300 flex items-center gap-1">
+                <span>View Specs</span> &rarr;
+              </button>
+              <a href="https://www.yralis.org" target="_blank" rel="noreferrer" class="text-xs font-mono text-slate-400 hover:text-white underline">
+                yralis.org ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: Dotlogics Digital Agency -->
+        <div class="proj-card web glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-brand-500 transition-all group">
+          <div>
+            <div class="flex items-center justify-between text-xs text-brand-400 font-mono mb-3">
+              <span>Digital Agency</span>
+              <span class="px-2 py-0.5 rounded bg-violet-500/10 text-violet-300 border border-violet-500/20">SSR & Headless</span>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-brand-300 transition-colors">Dotlogics Agency Platform</h3>
+            <p class="text-slate-300 text-sm mt-2.5 leading-relaxed">
+              High-performance server-side rendered website and CMS utilizing Nuxt.js paired with a robust PHP Laravel backend.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800/80">
+            <div class="flex flex-wrap gap-1.5 text-xs font-mono text-slate-400 mb-4">
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Nuxt.js</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Vue.js</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Laravel</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Tailwind</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <button onclick="openProjectModal('dotlogics')" class="text-xs font-semibold text-brand-400 hover:text-brand-300 flex items-center gap-1">
+                <span>View Specs</span> &rarr;
+              </button>
+              <a href="https://www.dotlogics.com" target="_blank" rel="noreferrer" class="text-xs font-mono text-slate-400 hover:text-white underline">
+                dotlogics.com ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5: DUET Academic Systems -->
+        <div class="proj-card web glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-brand-500 transition-all group">
+          <div>
+            <div class="flex items-center justify-between text-xs text-brand-400 font-mono mb-3">
+              <span>University Tech</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">Campus System</span>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-brand-300 transition-colors">DUET Online Admission & Attendance</h3>
+            <p class="text-slate-300 text-sm mt-2.5 leading-relaxed">
+              Official university admission portal and student biometric attendance management systems engineered for Dawood University of Engineering & Technology.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800/80">
+            <div class="flex flex-wrap gap-1.5 text-xs font-mono text-slate-400 mb-4">
+              <span class="bg-slate-900 px-2 py-0.5 rounded">PHP MVC</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">CodeIgniter</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">MySQL</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Auth System</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <button onclick="openProjectModal('duet')" class="text-xs font-semibold text-brand-400 hover:text-brand-300 flex items-center gap-1">
+                <span>View Specs</span> &rarr;
+              </button>
+              <span class="text-xs font-mono text-slate-400">admissions.duet.edu.pk</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6: UK Parcel Delivery & cnerr.de German Portal -->
+        <div class="proj-card web glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-brand-500 transition-all group">
+          <div>
+            <div class="flex items-center justify-between text-xs text-brand-400 font-mono mb-3">
+              <span>Logistics & Freelance</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">International</span>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-brand-300 transition-colors">UK Parcel Delivery & German Freelance Platform</h3>
+            <p class="text-slate-300 text-sm mt-2.5 leading-relaxed">
+              Built UK-based parcel tracking logistics services with REST APIs, and German freelance marketing platform (cnerr.de) with escrow payments.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800/80">
+            <div class="flex flex-wrap gap-1.5 text-xs font-mono text-slate-400 mb-4">
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Laravel</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">REST APIs</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Payment Gateways</span>
+              <span class="bg-slate-900 px-2 py-0.5 rounded">Tracking</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <button onclick="openProjectModal('logistics')" class="text-xs font-semibold text-brand-400 hover:text-brand-300 flex items-center gap-1">
+                <span>View Specs</span> &rarr;
+              </button>
+              <span class="text-xs font-mono text-slate-400">www.cnerr.de</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="terminal-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center max-w-3xl mx-auto mb-8">
+        <div class="text-xs font-mono uppercase tracking-widest text-accent-cyan mb-2">&gt; Interactive Shell</div>
+        <h2 class="text-3xl font-extrabold text-white">rameez-sh Terminal</h2>
+        <p class="text-slate-400 text-sm mt-1">Interact with Rameez's resume via commands. Try typing commands or click the chips below.</p>
+      </div>
+
+      <div id="interactive-terminal" class="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-[#090d16] font-mono text-sm">
+        <!-- Terminal Header -->
+        <div class="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+            <span class="text-xs text-slate-400 ml-2">guest@rameez-portfolio:~ (bash)</span>
+          </div>
+          <div class="text-[11px] text-slate-500 hidden sm:block">Press 'Enter' to execute</div>
+        </div>
+
+        <!-- Terminal Quick Action Chips -->
+        <div class="p-3 bg-slate-950/60 border-b border-slate-800/60 flex flex-wrap items-center gap-2 text-xs">
+          <span class="text-slate-400">Quick run:</span>
+          <button onclick="runCommand('help')" class="px-2.5 py-1 rounded bg-slate-800/80 hover:bg-brand-600/30 text-brand-300 border border-slate-700">help</button>
+          <button onclick="runCommand('skills')" class="px-2.5 py-1 rounded bg-slate-800/80 hover:bg-brand-600/30 text-brand-300 border border-slate-700">skills</button>
+          <button onclick="runCommand('experience')" class="px-2.5 py-1 rounded bg-slate-800/80 hover:bg-brand-600/30 text-brand-300 border border-slate-700">experience</button>
+          <button onclick="runCommand('projects')" class="px-2.5 py-1 rounded bg-slate-800/80 hover:bg-brand-600/30 text-brand-300 border border-slate-700">projects</button>
+          <button onclick="runCommand('contact')" class="px-2.5 py-1 rounded bg-slate-800/80 hover:bg-brand-600/30 text-brand-300 border border-slate-700">contact</button>
+          <button onclick="runCommand('sudo hire')" class="px-2.5 py-1 rounded bg-emerald-950 border border-emerald-600/40 text-emerald-400">sudo hire</button>
+          <button onclick="runCommand('clear')" class="px-2.5 py-1 rounded bg-slate-800/80 hover:bg-slate-700 text-slate-400 ml-auto">clear</button>
+        </div>
+
+        <!-- Output Log Area -->
+        <div id="terminal-output" class="p-5 space-y-3 min-h-[220px] max-h-[380px] overflow-y-auto text-slate-300 leading-relaxed">
+          <div><span class="text-emerald-400">welcome:</span> Welcome to Engr. Rameez Raja's interactive environment.</div>
+          <div class="text-slate-400">Type <span class="text-brand-400 font-bold">help</span> to view available commands, or click any button above.</div>
+        </div>
+
+        <!-- Input Bar -->
+        <form onsubmit="handleTerminalSubmit(event)" class="flex items-center px-4 py-3 bg-slate-950 border-t border-slate-800/90">
+          <span class="text-emerald-400 font-bold mr-2">guest@rameez:~$</span>
+          <input id="terminal-input" type="text" autocomplete="off" spellcheck="false" placeholder="type a command (e.g. skills, contact, sudo hire)..." class="flex-1 bg-transparent border-none outline-none text-white font-mono placeholder:text-slate-600 text-sm" />
+          <button type="submit" class="text-xs bg-brand-600 hover:bg-brand-500 text-white px-3 py-1.5 rounded-lg transition font-mono">Run</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="skills" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="text-xs font-mono uppercase tracking-widest text-brand-400 mb-2">Capabilities</div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Technical Skills Matrix</h2>
+        <p class="text-slate-400 text-sm mt-1">Categorized expertise built over a decade of hands-on software development</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Category 1: Backend & APIs -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-brand-600/20 text-brand-400 flex items-center justify-center font-mono font-bold">
+              &lt;/&gt;
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-white">Backend & APIs</h3>
+              <p class="text-xs text-slate-400">Scalable Services & Microservices</p>
+            </div>
+          </div>
+          <div class="space-y-2.5">
+            <div>
+              <div class="flex justify-between text-xs mb-1 font-mono"><span>PHP / Laravel / Lumen</span><span class="text-brand-400">Expert • 95%</span></div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-brand-500 rounded-full" style="width: 95%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1 font-mono"><span>Node.js / Express / Adonis</span><span class="text-brand-400">Advanced • 92%</span></div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-brand-500 rounded-full" style="width: 92%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1 font-mono"><span>GraphQL & RESTful APIs</span><span class="text-brand-400">Advanced • 90%</span></div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-brand-500 rounded-full" style="width: 90%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1 font-mono"><span>RabbitMQ & Redis Cache</span><span class="text-brand-400">85%</span></div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-brand-500 rounded-full" style="width: 85%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2: Frontend & Mobile -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-accent-teal/20 text-accent-teal flex items-center justify-center font-mono font-bold">
+              ⚛
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-white">Frontend & Mobile</h3>
+              <p class="text-xs text-slate-400">Client Interfaces & Cross-Platform</p>
+            </div>
+          </div>
+          <div class="space-y-2.5">
+            <div>
+              <div class="flex justify-between text-xs mb-1 font-mono"><span>Angular (v4 - 10)</span><span class="text-accent-teal">Advanced • 92%</span></div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-accent-teal rounded-full" style="width: 92%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1 font-mono"><span>React.js & React Native</span><span class="text-accent-teal">Advanced • 88%</span></div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-accent-teal rounded-full" style="width: 88%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1 font-mono"><span>TypeScript & ES6+</span><span class="text-accent-teal">90%</span></div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-accent-teal rounded-full" style="width: 90%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1 font-mono"><span>Vue.js & Nuxt.js</span><span class="text-accent-teal">85%</span></div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-accent-teal rounded-full" style="width: 85%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 3: Cloud, DevOps & Systems -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-accent-cyan/20 text-accent-cyan flex items-center justify-center font-mono font-bold">
+              ☁
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-white">DevOps & Cloud</h3>
+              <p class="text-xs text-slate-400">AWS Infrastructure & CI/CD</p>
+            </div>
+          </div>
+          <div class="space-y-2.5">
+            <div>
+              <div class="flex justify-between text-xs mb-1 font-mono"><span>AWS (EC2, S3, Route53, SES, SNS)</span><span class="text-accent-cyan">88%</span></div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-accent-cyan rounded-full" style="width: 88%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1 font-mono"><span>Docker & Kubernetes Basics</span><span class="text-accent-cyan">80%</span></div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-accent-cyan rounded-full" style="width: 80%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1 font-mono"><span>CI/CD Pipelines & Git</span><span class="text-accent-cyan">90%</span></div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-accent-cyan rounded-full" style="width: 90%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1 font-mono"><span>Ubuntu / Linux / Mac CLI</span><span class="text-accent-cyan">90%</span></div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-accent-cyan rounded-full" style="width: 90%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 4: Databases & Real-time -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800">
+          <h3 class="text-base font-bold text-white mb-3">Databases & Real-time</h3>
+          <div class="flex flex-wrap gap-2 text-xs font-mono">
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-200">MySQL</span>
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-200">PostgreSQL</span>
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-200">MongoDB</span>
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-200">Firebase</span>
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-brand-300">Socket.io</span>
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-accent-teal">WebSockets</span>
+          </div>
+        </div>
+
+        <!-- Category 5: Native & Desktop -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800">
+          <h3 class="text-base font-bold text-white mb-3">Native & Native Tools</h3>
+          <div class="flex flex-wrap gap-2 text-xs font-mono">
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-200">Swift 2/3</span>
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-200">Apple Xcode</span>
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-200">macOS App Dev</span>
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-200">iOS App Store</span>
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-200">Ionic Framework</span>
+          </div>
+        </div>
+
+        <!-- Category 6: Extra Skills & Productivity -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800">
+          <h3 class="text-base font-bold text-white mb-3">Complementary & Creative</h3>
+          <div class="flex flex-wrap gap-2 text-xs font-mono">
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-200">Photoshop</span>
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-200">Illustrator</span>
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-200">CorelDraw</span>
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-slate-200">WordPress & Magento</span>
+            <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-emerald-400">48 WPM (EN/UR/AR)</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="education" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Education column -->
+        <div class="lg:col-span-7">
+          <div class="text-xs font-mono uppercase tracking-widest text-brand-400 mb-2">Academics</div>
+          <h2 class="text-3xl font-extrabold text-white mb-6">Education & Degrees</h2>
+          
+          <div class="space-y-4">
+            <div class="glass-card rounded-2xl p-6 border border-slate-800">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h3 class="text-lg font-bold text-white">Bachelor of Engineering: Computer Systems</h3>
+                  <div class="text-brand-400 font-medium text-sm">Dawood University of Engineering & Technology (DUET), Karachi</div>
+                </div>
+                <span class="text-xs font-mono bg-slate-900 px-3 py-1 rounded text-slate-300 border border-slate-800">Dec 2014</span>
+              </div>
+              <div class="mt-3 text-sm text-slate-300 space-y-1.5">
+                <p>• <span class="text-white font-semibold">Graduated with High Merit:</span> Obtained <span class="text-brand-400 font-bold">3.59 CGPA out of 4.0</span>.</p>
+                <p>• <span class="text-white font-semibold">Final Year Capstone:</span> "Online Admission System using PHP CodeIgniter".</p>
+                <p>• Rigorous coursework in Object-Oriented Programming, Database Management, Data Structures & Algorithms, and Computer Systems Architecture.</p>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border border-slate-800">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h3 class="text-base font-bold text-white">Intermediate: Pre-Engineering</h3>
+                  <div class="text-slate-400 text-sm">BISE Saidu Sharif Swat</div>
+                </div>
+                <span class="text-xs font-mono bg-slate-900 px-3 py-1 rounded text-slate-300 border border-slate-800">2009</span>
+              </div>
+              <p class="mt-2 text-sm text-emerald-400 font-mono font-medium">Obtained 80.9% (Grade A-1)</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border border-slate-800">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h3 class="text-base font-bold text-white">Matriculation: Science</h3>
+                  <div class="text-slate-400 text-sm">BISE Saidu Sharif Swat</div>
+                </div>
+                <span class="text-xs font-mono bg-slate-900 px-3 py-1 rounded text-slate-300 border border-slate-800">2007</span>
+              </div>
+              <p class="mt-2 text-sm text-emerald-400 font-mono font-medium">Obtained 80.5% (Grade A-1)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Honors & Professional Courses column -->
+        <div class="lg:col-span-5 space-y-6">
+          <div>
+            <div class="text-xs font-mono uppercase tracking-widest text-accent-cyan mb-2">Recognition</div>
+            <h2 class="text-3xl font-extrabold text-white mb-6">Achievements & Honors</h2>
+
+            <div class="space-y-3">
+              <div class="p-4 rounded-xl glass-card border border-slate-800 flex items-start gap-3">
+                <span class="text-xl">🏆</span>
+                <div>
+                  <div class="font-bold text-white text-sm">First Position Winner — Website Competition</div>
+                  <div class="text-xs text-slate-400 mt-0.5">Awarded by Dawood University of Engineering & Technology (DUET) Karachi.</div>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-xl glass-card border border-slate-800 flex items-start gap-3">
+                <span class="text-xl">✨</span>
+                <div>
+                  <div class="font-bold text-white text-sm">Hafiz-ul-Quran</div>
+                  <div class="text-xs text-slate-400 mt-0.5">Completed full memorization of the Holy Quran with high discipline and focus.</div>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-xl glass-card border border-slate-800 flex items-start gap-3">
+                <span class="text-xl">🗳️</span>
+                <div>
+                  <div class="font-bold text-white text-sm">Election Tech Team Leader (Sindh Bar Council 2014 & 2015)</div>
+                  <div class="text-xs text-slate-400 mt-0.5">Led official computerized voting system administration for Bar Council elections.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Professional Certifications -->
+          <div>
+            <div class="text-xs font-mono uppercase tracking-widest text-brand-400 mb-2">Specialized Training</div>
+            <div class="glass-card rounded-2xl p-5 border border-slate-800 space-y-3">
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-white font-medium">Web Engineering</span>
+                <span class="text-xs font-mono text-slate-400">SSUET Karachi</span>
+              </div>
+              <div class="h-px bg-slate-800"></div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-white font-medium">SharePoint Development</span>
+                <span class="text-xs font-mono text-slate-400">CTTC Institute Karachi</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="glass-card rounded-3xl p-8 sm:p-12 border border-slate-800 relative overflow-hidden">
+        <div class="absolute -bottom-10 -right-10 w-96 h-96 bg-brand-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-6 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-mono">
+              <span>Ready for Collaboration</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Let's Build Something Exceptional Together</h2>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              Whether you have an enterprise system to architect, a team to mentor, or a full-stack web/mobile application to ship, I'd welcome the chance to discuss how my 10+ years of technical experience can add immediate value.
+            </p>
+
+            <div class="space-y-3 pt-2">
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-slate-900 border border-slate-800">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-brand-600/20 text-brand-400 flex items-center justify-center font-bold">✉</div>
+                  <div>
+                    <div class="text-xs text-slate-400 font-mono">Direct Email</div>
+                    <div class="text-sm font-semibold text-white">rajaunleashed@gmail.com</div>
+                  </div>
+                </div>
+                <button onclick="copyToClipboard('rajaunleashed@gmail.com', 'Email copied!')" class="px-3 py-1 text-xs bg-slate-800 hover:bg-brand-600 text-slate-200 hover:text-white rounded-md transition">Copy</button>
+              </div>
+
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-slate-900 border border-slate-800">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-emerald-600/20 text-emerald-400 flex items-center justify-center font-bold">📞</div>
+                  <div>
+                    <div class="text-xs text-slate-400 font-mono">Direct Phone</div>
+                    <div class="text-sm font-semibold text-white">0334-9342471</div>
+                  </div>
+                </div>
+                <a href="tel:03349342471" class="px-3 py-1 text-xs bg-emerald-900/60 hover:bg-emerald-600 text-emerald-200 hover:text-white rounded-md transition">Call</a>
+              </div>
+
+              <div class="flex items-center gap-3 p-3.5 rounded-xl bg-slate-900 border border-slate-800">
+                <div class="w-8 h-8 rounded-lg bg-cyan-600/20 text-cyan-400 flex items-center justify-center font-bold">📍</div>
+                <div>
+                  <div class="text-xs text-slate-400 font-mono">Location</div>
+                  <div class="text-sm font-semibold text-white">Faizabad, Saidu Sharif, District Swat, KPK, Pakistan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Email Composer -->
+          <div class="lg:col-span-6 bg-slate-900/90 rounded-2xl p-6 border border-slate-800">
+            <h3 class="text-base font-bold text-white mb-4">Send a Direct Message</h3>
+            <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+              <div>
+                <label class="block text-xs font-mono text-slate-400 mb-1">Your Name</label>
+                <input id="msg-name" type="text" required placeholder="Jane Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" />
+              </div>
+              <div>
+                <label class="block text-xs font-mono text-slate-400 mb-1">Your Company or Organization</label>
+                <input id="msg-org" type="text" placeholder="Acme Technologies" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" />
+              </div>
+              <div>
+                <label class="block text-xs font-mono text-slate-400 mb-1">Message</label>
+                <textarea id="msg-body" rows="4" required placeholder="Hi Rameez, I saw your full-stack showcase and would like to discuss an opportunity..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition"></textarea>
+              </div>
+              <button type="submit" class="w-full py-3 bg-gradient-to-r from-brand-600 to-accent-teal hover:from-brand-500 hover:to-accent-cyan text-white font-semibold rounded-xl shadow-lg shadow-brand-600/30 transition hover:scale-[1.01] active:scale-[0.99] text-sm">
+                Prepare Email to Engr. Rameez
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="project-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="glass-card rounded-2xl max-w-2xl w-full p-6 sm:p-8 border border-slate-700 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeProjectModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-1 rounded-lg bg-slate-800 transition">
+        ✕
+      </button>
+      <div id="modal-content" class="space-y-4">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 bg-slate-950/90 py-8 relative z-10 text-xs text-slate-400 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="text-slate-300 font-bold">Engr. Rameez Raja</span> • Senior Full Stack Engineer & Tech Lead
+      </div>
+      <div>
+        Saidu Sharif, District Swat, KPK, Pakistan • 0334-9342471
+      </div>
+      <div class="font-mono text-slate-500">
+        HTML • CSS • Tailwind • Canvas
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // --------------------------------------------------------------------------
+    // 1. Interactive Canvas Matrix (Connected Microservices Nodes)
+    // --------------------------------------------------------------------------
+    const canvas = document.getElementById('canvas-bg');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouse = { x: null, y: null, radius: 120 };
+
+    function initCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particles = [];
+      const particleCount = Math.floor((canvas.width * canvas.height) / 14000);
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.7,
+          vy: (Math.random() - 0.5) * 0.7,
+          radius: Math.random() * 2 + 1,
+          color: Math.random() > 0.5 ? '#38bdf8' : '#3b82f6'
+        });
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx = -p.vx;
+        if (p.y < 0 || p.y > canvas.height) p.vy = -p.vy;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        // Connect nearby nodes
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(56, 189, 248, ${0.15 * (1 - dist / 110)})`;
+            ctx.lineWidth = 0.7;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateParticles);
+    }
+
+    window.addEventListener('resize', initCanvas);
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    window.onload = function() {
+      initCanvas();
+      animateParticles();
+      initTypewriter();
+    };
+
+    // --------------------------------------------------------------------------
+    // 2. Typewriter Effect in Hero
+    // --------------------------------------------------------------------------
+    const roles = [
+      "Sr. Full Stack Engineer",
+      "Engineering Team Lead",
+      "Software Systems Architect",
+      "Telehealth & HIPAA Specialist",
+      "Cloud & DevOps Engineer"
+    ];
+    let roleIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+    const typewriterEl = document.getElementById('typewriter-text');
+
+    function initTypewriter() {
+      const currentRole = roles[roleIdx];
+      if (isDeleting) {
+        typewriterEl.textContent = currentRole.substring(0, charIdx - 1);
+        charIdx--;
+      } else {
+        typewriterEl.textContent = currentRole.substring(0, charIdx + 1);
+        charIdx++;
+      }
+
+      let speed = isDeleting ? 40 : 90;
+      if (!isDeleting && charIdx === currentRole.length) {
+        speed = 1800; // Pause at end of text
+        isDeleting = true;
+      } else if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        roleIdx = (roleIdx + 1) % roles.length;
+        speed = 400;
+      }
+      setTimeout(initTypewriter, speed);
+    }
+
+    // --------------------------------------------------------------------------
+    // 3. Architecture Inspector in Hero Window
+    // --------------------------------------------------------------------------
+    const stackDetails = {
+      backend: `[BACKEND & APIS]: Laravel & Node.js ecosystem with GraphQL & REST. Integrated RabbitMQ message brokers, Redis distributed caching, and microservices architecture. Tested using Jest & Mocha Chai.`,
+      frontend: `[FRONTEND PLATFORMS]: Angular (v4 to 10), React.js, React Native for cross-platform mobile, Vue.js / Nuxt.js SSR, and TypeScript. Styled with Tailwind CSS & responsive paradigms.`,
+      devops: `[CLOUD & DEVOPS]: AWS Infrastructure (EC2, S3, Route53, SNS, SES, Lightsail), Docker containerization, Kubernetes pod management, and automated CI/CD deployment pipelines.`
+    };
+
+    function inspectStack(key) {
+      const detailEl = document.getElementById('stack-detail');
+      detailEl.textContent = stackDetails[key] || "Stack details initialized.";
+    }
+
+    // --------------------------------------------------------------------------
+    // 4. Notification Toast Helper
+    // --------------------------------------------------------------------------
+    function showToast(msg, isSuccess = true) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      const toastIcon = document.getElementById('toast-icon');
+
+      toastMsg.textContent = msg;
+      toastIcon.textContent = isSuccess ? '✓' : 'ℹ';
+      toastIcon.className = isSuccess ? 'text-brand-400 font-bold' : 'text-amber-400 font-bold';
+
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3200);
+    }
+
+    function copyToClipboard(text, successMessage) {
+      const tempInput = document.createElement('input');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMessage || 'Copied to clipboard!');
+      } catch (err) {
+        showToast('Unable to copy', false);
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    // --------------------------------------------------------------------------
+    // 5. Download Bio / CV Summary
+    // --------------------------------------------------------------------------
+    function downloadResumeText() {
+      const bioContent = `ENGR. RAMEEZ RAJA
+Faizabad, Saidu Sharif, District Swat, KPK, Pakistan
+Cell: 0334-9342471 | Email: rajaunleashed@gmail.com
+
+OBJECTIVE:
+Seeking a position in information technology where knowledge of software development life cycle, high technical aptitude and unyielding commitment to work can effectively contribute to the successful and profitable operation of the firm.
+
+CORE STACK:
+Laravel, Node.js, Angular 10, React.js, React Native, Vue/Nuxt, Socket.io, AWS, Docker, Kubernetes, GraphQL, MySQL, RabbitMQ, Redis, Swift.
+
+ACADEMICS:
+Bachelor of Engineering in Computer Systems - Dawood University of Engineering & Technology (DUET), Karachi. (CGPA: 3.59/4.0)`;
+      
+      const blob = new Blob([bioContent], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Engr_Rameez_Raja_Resume.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Resume bio downloaded!');
+    }
+
+    // --------------------------------------------------------------------------
+    // 6. Experience & Project Filtering
+    // --------------------------------------------------------------------------
+    function filterExperience(type) {
+      document.querySelectorAll('.exp-filter').forEach(btn => {
+        btn.classList.remove('bg-brand-600', 'text-white');
+        btn.classList.add('bg-slate-900', 'text-slate-300');
+      });
+      event.target.classList.add('bg-brand-600', 'text-white');
+      event.target.classList.remove('bg-slate-900', 'text-slate-300');
+
+      const items = document.querySelectorAll('.exp-item');
+      items.forEach(item => {
+        if (type === 'all' || item.classList.contains(type)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function filterProjects(type) {
+      document.querySelectorAll('.proj-filter').forEach(btn => {
+        btn.classList.remove('bg-brand-600', 'text-white');
+        btn.classList.add('bg-slate-900', 'text-slate-300');
+      });
+      event.target.classList.add('bg-brand-600', 'text-white');
+      event.target.classList.remove('bg-slate-900', 'text-slate-300');
+
+      const cards = document.querySelectorAll('.proj-card');
+      cards.forEach(card => {
+        if (type === 'all' || card.classList.contains(type)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // --------------------------------------------------------------------------
+    // 7. Interactive Terminal Logic (rameez-sh)
+    // --------------------------------------------------------------------------
+    const termOutput = document.getElementById('terminal-output');
+    const termInput = document.getElementById('terminal-input');
+
+    const termCommands = {
+      help: `Available commands:
+• <span class="text-brand-400">skills</span>      - View primary technical stack breakdown
+• <span class="text-brand-400">experience</span>  - List companies and key leadership positions
+• <span class="text-brand-400">projects</span>    - Display notable delivered applications
+• <span class="text-brand-400">contact</span>     - Show direct email, cell phone, and location
+• <span class="text-brand-400">education</span>   - University credentials and CGPA
+• <span class="text-brand-400">clear</span>       - Clear the terminal screen
+• <span class="text-emerald-400">sudo hire</span>   - Initiate priority contact draft`,
+      skills: `<span class="text-brand-300 font-bold">TECH STACK SUMMARY:</span>
+Backend  : PHP/Laravel, Node.js, Express, Adonis, GraphQL, RabbitMQ, Redis, REST APIs
+Frontend : Angular (4-10), ReactJS, React Native, VueJS/NuxtJS, TypeScript, Tailwind
+Cloud/Ops: AWS (EC2, S3, Route53, SES, SNS), Docker, Kubernetes, CI/CD
+Databases: MySQL, PostgreSQL, MongoDB, Firebase
+Native   : Swift, Xcode, macOS & iOS application engineering`,
+      experience: `<span class="text-brand-300 font-bold">CAREER HISTORY:</span>
+1. Hucu.ai (06/2021 - Present)           -> Sr. Full Stack Engineer (HIPAA Healthcare)
+2. Topdot Pvt. Ltd. (08/2019 - 02/2021)   -> Sr. Software Engineer / Team Lead
+3. Al-Nafay IT Solutions (03/2019 - 08/2019) -> Full Stack Engineer
+4. HTMLPro (01/2018 - 02/2019)           -> Backend Web Developer
+5. 4Slash (02/2015 - 12/2018)            -> Web App & iOS Developer
+6. Charlotte Group (2013 - 2014)          -> I.T Manager`,
+      projects: `<span class="text-brand-300 font-bold">FEATURED PRODUCTS:</span>
+• Patient-Doctor Telehealth Chat App (React, React Native, Socket.io, Node.js)
+• gamban® macOS Desktop Application (Swift, Xcode, System Security)
+• YACT Club Racing Portal (Laravel, Angular) - yralis.org
+• Dotlogics Agency Web Platform (Laravel, Nuxt.js) - dotlogics.com
+• DUET Online Admission & Attendance Management Systems (CodeIgniter, MySQL)`,
+      contact: `<span class="text-emerald-300 font-bold">CONTACT DIRECTORY:</span>
+• Name     : Engr. Rameez Raja
+• Email    : rajaunleashed@gmail.com
+• Phone    : 0334-9342471
+• Location : Faizabad, Saidu Sharif, District Swat, KPK, Pakistan`,
+      education: `<span class="text-brand-300 font-bold">EDUCATION CREDENTIALS:</span>
+• Bachelor of Engineering: Computer Systems
+  Dawood University of Engineering & Technology (DUET), Karachi
+  CGPA: 3.59 / 4.0 | 1st Position in University Web Competition`,
+      "sudo hire": `<span class="text-emerald-400 font-bold">ACCESS GRANTED!</span>
+Scheduling priority connection with Engr. Rameez Raja.
+Drafting email to rajaunleashed@gmail.com... Please fill out the contact form below or reach out at 0334-9342471.`
+    };
+
+    function runCommand(cmd) {
+      cmd = cmd.trim().toLowerCase();
+      
+      // Append user command line
+      const userLine = document.createElement('div');
+      userLine.innerHTML = `<span class="text-emerald-400 font-bold">guest@rameez:~$</span> <span class="text-white">${cmd}</span>`;
+      termOutput.appendChild(userLine);
+
+      if (cmd === 'clear') {
+        termOutput.innerHTML = '';
+        return;
+      }
+
+      const reply = document.createElement('div');
+      reply.className = 'text-slate-300 pl-2 border-l border-brand-500/40 text-xs sm:text-sm font-mono whitespace-pre-wrap';
+      if (termCommands[cmd]) {
+        reply.innerHTML = termCommands[cmd];
+      } else {
+        reply.innerHTML = `<span class="text-red-400">command not found: "${cmd}"</span>. Type <span class="text-brand-400 font-bold">help</span> to view supported commands.`;
+      }
+      termOutput.appendChild(reply);
+      termOutput.scrollTop = termOutput.scrollHeight;
+
+      if (cmd === 'sudo hire') {
+        setTimeout(() => {
+          document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }, 800);
+      }
+    }
+
+    function handleTerminalSubmit(e) {
+      e.preventDefault();
+      const val = termInput.value;
+      if (!val.trim()) return;
+      runCommand(val);
+      termInput.value = '';
+    }
+
+    // --------------------------------------------------------------------------
+    // 8. Project Details Modal
+    // --------------------------------------------------------------------------
+    const projectDetailsModal = {
+      hucu: {
+        title: "Patient-Doctor Real-Time HIPPA Compliant Chat",
+        tag: "Healthcare Telehealth • Full-Stack",
+        summary: "Engineered secure communication systems compliant with HIPAA privacy and encryption standards. Facilitates live instant chats, consultations, push notifications, and clinical team synchronization.",
+        specs: [
+          "Backend: Node.js, Express, Socket.io, MySQL with encryption at rest and in transit.",
+          "Mobile & Web: React Native for iOS/Android, and React.js web dashboard.",
+          "Microservices & Async: RabbitMQ queuing, Redis cache clusters, Jest & Mocha Chai automated test suites."
+        ]
+      },
+      gamban: {
+        title: "gamban® Mac OS X Application",
+        tag: "macOS Native • Security & System Daemons",
+        summary: "A native macOS desktop application engineered in Xcode and Swift 2.0 designed to assist users with digital wellbeing and self-exclusion across network interfaces.",
+        specs: [
+          "Language: Swift with native Cocoa & AppKit frameworks.",
+          "Network Interception: Low-level system daemon monitoring.",
+          "Distribution: Secure packaging and automated updates."
+        ]
+      },
+      yralis: {
+        title: "YACT Club Racing Website & Administration Portal",
+        tag: "Yacht Racing Association of Long Island Sound (yralis.org)",
+        summary: "Full portal for managing yacht regattas, vessel registrations, racing schedules, scoring calculations, and member club administrative directories.",
+        specs: [
+          "Backend: PHP Laravel with RESTful services and relational scoring models.",
+          "Frontend: Angular with responsive UI and dynamic race result tables.",
+          "Cloud: Deployed on cloud infrastructure with automated backups."
+        ]
+      },
+      dotlogics: {
+        title: "Dotlogics Digital Agency Web Portal",
+        tag: "Nuxt.js SSR • Laravel API • dotlogics.com",
+        summary: "Digital agency website built for optimal SEO, lighthouse performance, and rich interactive portfolio presentations.",
+        specs: [
+          "Frontend: Nuxt.js server-side rendering for superior indexing speeds.",
+          "Backend: Laravel Headless CMS and API endpoints.",
+          "CSS: Tailwind CSS for custom branding."
+        ]
+      },
+      duet: {
+        title: "DUET Online Admission & Attendance System",
+        tag: "Academic Software Systems • admissions.duet.edu.pk",
+        summary: "Official University enterprise admission portal and biometric attendance management system built for Dawood University of Engineering & Technology.",
+        specs: [
+          "Framework: PHP MVC (CodeIgniter) with MySQL database architecture.",
+          "Authentication: Role-based access control for students, staff, and admissions officers.",
+          "Hardware Integration: Automated biometric attendance machine report processing."
+        ]
+      },
+      logistics: {
+        title: "UK Parcel Delivery & German Freelance Platform",
+        tag: "International Logistics & Marketplaces (cnerr.de)",
+        summary: "High-volume parcel tracking and logistics dispatch web services for the UK, alongside a German-based freelance service marketing portal with escrow payments.",
+        specs: [
+          "Logistics: RESTful API tracking web services with webhook triggers.",
+          "Payment Gateways: PayPal, Stripe, and Braintree integration.",
+          "Frameworks: PHP Laravel, Node.js, and automated deployment."
+        ]
+      }
+    };
+
+    function openProjectModal(key) {
+      const modal = document.getElementById('project-modal');
+      const content = document.getElementById('modal-content');
+      const data = projectDetailsModal[key];
+      if (!data) return;
+
+      content.innerHTML = `
+        <div class="text-xs font-mono text-brand-400 uppercase">${data.tag}</div>
+        <h3 class="text-2xl font-bold text-white">${data.title}</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">${data.summary}</p>
+        <div class="space-y-2 pt-2">
+          <div class="text-xs font-mono text-slate-400 uppercase font-semibold">Technical Highlights:</div>
+          <ul class="space-y-1.5 text-xs font-mono text-slate-300">
+            ${data.specs.map(s => `<li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span><span>${s}</span></li>`).join('')}
+          </ul>
+        </div>
+      `;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeProjectModal() {
+      const modal = document.getElementById('project-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('project-modal');
+      if (e.target === modal) closeProjectModal();
+    });
+
+    // --------------------------------------------------------------------------
+    // 9. Contact Message Handler
+    // --------------------------------------------------------------------------
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('msg-name').value;
+      const org = document.getElementById('msg-org').value || 'N/A';
+      const body = document.getElementById('msg-body').value;
+
+      const subject = encodeURIComponent(`Inquiry from ${name} (${org}) via Interactive Resume`);
+      const emailBody = encodeURIComponent(`Hello Engr. Rameez,\n\nName: ${name}\nOrganization: ${org}\n\nMessage:\n${body}\n\nBest regards,\n${name}`);
+      
+      const mailtoUrl = `mailto:rajaunleashed@gmail.com?subject=${subject}&body=${emailBody}`;
+      window.location.href = mailtoUrl;
+      showToast('Opening default email client...');
+    }
+  </script>
+</body>
+</html>
